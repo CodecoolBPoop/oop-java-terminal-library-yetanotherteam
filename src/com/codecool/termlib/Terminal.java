@@ -98,6 +98,24 @@ public class Terminal {
      * @param amount Step the cursor this many times.
      */
     public void moveCursor(Direction direction, Integer amount) {
+        String moveCursor = "";
+
+        switch(direction) {
+            case UP:
+                moveCursor += amount+"A";
+            break;
+            case DOWN:
+                moveCursor += amount+"B";
+            break;
+            case FORWARD:
+                moveCursor += amount+"C";  
+            break;
+            case BACKWARD:
+                moveCursor += amount+"D";
+            break;          
+        }
+
+        command(moveCursor);
     }
 
     /**
