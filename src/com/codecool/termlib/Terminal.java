@@ -38,6 +38,7 @@ public class Terminal {
      * Might reset cursor position.
      */
     public void clearScreen() {
+
     }
 
     /**
@@ -50,6 +51,9 @@ public class Terminal {
      * @param y Row number.
      */
     public void moveTo(Integer x, Integer y) {
+        String moveTo = x+";"+y+"H";
+
+        command(moveTo);
     }
 
     /**
