@@ -30,6 +30,8 @@ public class Terminal {
      * (i.e.: underlined, dim, bright) to the terminal defaults.
      */
     public void resetStyle() {
+        String resetAll = String.format("0%s", STYLE);
+        command(resetAll);
     }
 
     /**
@@ -38,6 +40,9 @@ public class Terminal {
      * Might reset cursor position.
      */
     public void clearScreen() {
+
+        String clearScr = CLEAR + CONTROL_CODE + MOVE;  // "\033c" for really resetting the terminal
+        command(clearScr);
 
     }
 
@@ -65,7 +70,7 @@ public class Terminal {
      */
     public void setColor(Color color) {
     }
-
+    
     /**
      * Set the background printing color.
      *
@@ -74,7 +79,7 @@ public class Terminal {
      * @param color The background color to set.
      */
     public void setBgColor(Color color) {
-	String setbgcolor = "42m";
+	String setbgcolor = "31m";
 	command(setbgcolor);
     }
 
