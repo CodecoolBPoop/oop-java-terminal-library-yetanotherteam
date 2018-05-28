@@ -40,8 +40,10 @@ public class Terminal {
      * Might reset cursor position.
      */
     public void clearScreen() {
+
         String clearScr = CLEAR + CONTROL_CODE + MOVE;  // "\033c" for really resetting the terminal
         command(clearScr);
+
     }
 
     /**
@@ -54,6 +56,9 @@ public class Terminal {
      * @param y Row number.
      */
     public void moveTo(Integer x, Integer y) {
+        String moveTo = x+";"+y+"H";
+
+        command(moveTo);
     }
 
     /**
@@ -98,6 +103,24 @@ public class Terminal {
      * @param amount Step the cursor this many times.
      */
     public void moveCursor(Direction direction, Integer amount) {
+        String moveCursor = "";
+
+        switch(direction) {
+            case UP:
+                moveCursor += amount+"A";
+            break;
+            case DOWN:
+                moveCursor += amount+"B";
+            break;
+            case FORWARD:
+                moveCursor += amount+"C";  
+            break;
+            case BACKWARD:
+                moveCursor += amount+"D";
+            break;          
+        }
+
+        command(moveCursor);
     }
 
     /**
