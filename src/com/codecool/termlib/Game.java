@@ -1,7 +1,9 @@
 package com.codecool.termlib;
 
 import java.util.Arrays;
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Game {
 
@@ -9,15 +11,18 @@ public class Game {
 
 	private String[] readFiles() {
 		String[] words = new String[0];
-		BufferedReader br = new BufferedReader(new FileReader(file));
 
-		String line;
-		while ((line = file.readLine()) != null) {
-			saveWords = Arrays.copyOf(words, words.length+1);
-   			words = new String[words.length+1];
-   			words = saveWords;
-   			words[words.length+1] = line;
-			 }
+		  try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+
+			String line;
+			while ((line = br.readLine()) != null) {
+				words = Arrays.copyOf(words, words.length+1);
+				words[words.length-1] = line;
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		return words;
 
