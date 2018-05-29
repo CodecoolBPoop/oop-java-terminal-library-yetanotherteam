@@ -1,5 +1,12 @@
 package com.codecool.termlib;
 
+import com.codecool.termlib.Direction;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.awt.AWTException;
+import java.lang.*;
+import java.io.IOException;
+
 public class Terminal {
     /**
      * The beginning of control sequences.
@@ -41,8 +48,17 @@ public class Terminal {
      */
     public void clearScreen() {
 
-        String clearScr = CLEAR + CONTROL_CODE + MOVE;  // "\033c" for really resetting the terminal
-        command(clearScr);
+       /* String clearScr = CLEAR + CONTROL_CODE + MOVE;  // "\033c" for really resetting the terminal
+        command(clearScr);*/
+	
+	moveTo(24,0);
+	
+	for(int i = 0; i<24;i++){
+		moveCursor(Direction.UP, 1);
+		command("2K");
+	}
+	
+	moveTo(24,0);
 
     }
 
@@ -134,7 +150,9 @@ public class Terminal {
      * @param c the literal character to set for the current cursor
      * position.
      */
-    public void setChar(char c) {
+    public void setWord(String word, int x, int y) {
+	moveTo(x,y);
+	System.out.print(word);
     }
 
     /**
@@ -148,4 +166,61 @@ public class Terminal {
     private void command(String commandString) {		
 	System.out.printf("%s%s", CONTROL_CODE, commandString);
     }
+
+    public void wait(int minutes){
+	        try        
+		{
+		    Thread.sleep(minutes);
+		} 
+		catch(InterruptedException ex) 
+		{
+		    Thread.currentThread().interrupt();
+		}
+    }	
+
+    public void pressEnd(){
+	try{
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_END);
+		robot.keyRelease(KeyEvent.VK_END);
+	}catch (AWTException e){
+		e.printStackTrace();	
+	}
+	
+
+    }	
+
+
+   public void saveCursor(){
+	command("s");	
+	}
+
+
+   public void restoreCursor(){
+	command("u");
+}	
+
+   public void setup(){
+	try{
+		Runtime rt = Runtime.getRuntime();
+		rt.exec("stty raw -echo");
+	}catch(Exception e){
+		e.printStackTrace();	
+	}
+
+		
+}
+   public Character tryToRead() {
+    try {
+        if (System.in.available() > 0) {	    
+	    char input = (char)System.in.read();	
+   	    System.out.print(input);
+            return input;
+        }
+    }
+    catch (IOException e) {
+        System.err.println("Error " + e.getMessage());
+    }
+    return null;
+}	
 }
