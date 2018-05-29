@@ -69,6 +69,8 @@ public class Terminal {
      * @param color The color to set.
      */
     public void setColor(Color color) {
+	String settextcolor = color.foreground() + STYLE;
+	command(settextcolor);
     }
     
     /**
@@ -79,7 +81,7 @@ public class Terminal {
      * @param color The background color to set.
      */
     public void setBgColor(Color color) {
-	String setbgcolor = "31m";
+	String setbgcolor = color.background() + STYLE;
 	command(setbgcolor);
     }
 
@@ -144,9 +146,7 @@ public class Terminal {
      *
      * @param commandString The unique part of a command sequence.
      */
-    private void command(String commandString) {
-
-	
+    private void command(String commandString) {		
 	System.out.printf("%s%s", CONTROL_CODE, commandString);
     }
 }
