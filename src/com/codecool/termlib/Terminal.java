@@ -56,8 +56,7 @@ public class Terminal {
      * @param y Row number.
      */
     public void moveTo(Integer x, Integer y) {
-        String moveTo = x+";"+y+"H";
-
+        String moveTo = String.format("%d;%d%s", x,y,MOVE);
         command(moveTo);
     }
 
