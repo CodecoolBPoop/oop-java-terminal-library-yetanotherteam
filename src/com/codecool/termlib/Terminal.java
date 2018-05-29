@@ -30,6 +30,8 @@ public class Terminal {
      * (i.e.: underlined, dim, bright) to the terminal defaults.
      */
     public void resetStyle() {
+        String resetAll = String.format("0%s", STYLE);
+        command(resetAll);
     }
 
     /**
@@ -38,6 +40,10 @@ public class Terminal {
      * Might reset cursor position.
      */
     public void clearScreen() {
+
+        String clearScr = CLEAR + CONTROL_CODE + MOVE;  // "\033c" for really resetting the terminal
+        command(clearScr);
+
     }
 
     /**
@@ -50,6 +56,8 @@ public class Terminal {
      * @param y Row number.
      */
     public void moveTo(Integer x, Integer y) {
+        String moveTo = String.format("%d;%d%s", x,y,MOVE);
+        command(moveTo);
     }
 
     /**
@@ -60,8 +68,10 @@ public class Terminal {
      * @param color The color to set.
      */
     public void setColor(Color color) {
+	String settextcolor = color.foreground() + STYLE;
+	command(settextcolor);
     }
-
+    
     /**
      * Set the background printing color.
      *
@@ -70,6 +80,8 @@ public class Terminal {
      * @param color The background color to set.
      */
     public void setBgColor(Color color) {
+	String setbgcolor = color.background() + STYLE;
+	command(setbgcolor);
     }
 
     /**
@@ -92,6 +104,24 @@ public class Terminal {
      * @param amount Step the cursor this many times.
      */
     public void moveCursor(Direction direction, Integer amount) {
+        String moveCursor = "";
+
+        switch(direction) {
+            case UP:
+                moveCursor += amount+"A";
+            break;
+            case DOWN:
+                moveCursor += amount+"B";
+            break;
+            case FORWARD:
+                moveCursor += amount+"C";  
+            break;
+            case BACKWARD:
+                moveCursor += amount+"D";
+            break;          
+        }
+
+        command(moveCursor);
     }
 
     /**
@@ -115,6 +145,7 @@ public class Terminal {
      *
      * @param commandString The unique part of a command sequence.
      */
-    private void command(String commandString) {
+    private void command(String commandString) {		
+	System.out.printf("%s%s", CONTROL_CODE, commandString);
     }
 }
