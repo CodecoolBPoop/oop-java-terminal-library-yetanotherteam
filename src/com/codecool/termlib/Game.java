@@ -12,7 +12,7 @@ public class Game {
 	private String[] readFiles() {
 		String[] words = new String[0];
 
-		  try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+		  try (BufferedReader br = new BufferedReader(new FileReader("dictonary.txt"))) {
 
 			String line;
 			while ((line = br.readLine()) != null) {
