@@ -1,6 +1,6 @@
-import com.codecool.termlib.Terminal;
-import com.codecool.termlib.Color;
-import com.codecool.termlib.Word;
+package com.codecool.termlib;
+
+import com.codecool.termlib.*;
 import java.lang.*;
 import java.util.Scanner;
 import java.io.IOException;
@@ -13,9 +13,12 @@ import com.codecool.termlib.Game;
 
 
 public class Main{
-	
-	public static void main(String[] args){
 
+	public Main(){
+
+	}
+
+	public void playGame() {
 		Terminal newTerminal = new Terminal();
 		
 
@@ -49,27 +52,9 @@ public class Main{
 				starttime = (int)System.currentTimeMillis();
 				newTerminal.restoreCursor();
 			}
-					
-		
 		
 		}
 			System.out.print(Arrays.toString(inputs));
-
-		
-		
-
-
-		// Terminal newTerminal = new Terminal();
-		// newTerminal.setBgColor(Color.RED);
-
-		// newTerminal.setColor(Color.BLUE);
-		// System.out.println("testline");
-		
-
-		// System.out.println("Hello World");
-		// newTerminal.resetStyle();
-		// System.out.println("Hello World");
-		// newTerminal.clearScreen();
 
 		Game game = new Game();
 		String[] words = game.dictonary;
@@ -78,6 +63,12 @@ public class Main{
 			System.out.println(words[i]);
 
 		}
+
+	}
+	
+	public static void main(String[] args){
+		Menu gameMenu = new Menu();
+		gameMenu.menuOptions();
 	}
 
 }
