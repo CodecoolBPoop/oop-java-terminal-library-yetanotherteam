@@ -167,28 +167,7 @@ public class Terminal {
 	System.out.printf("%s%s", CONTROL_CODE, commandString);
     }
 
-    public void wait(int minutes){
-	        try        
-		{
-		    Thread.sleep(minutes);
-		} 
-		catch(InterruptedException ex) 
-		{
-		    Thread.currentThread().interrupt();
-		}
-    }	
-
-    public void pressEnd(){
-	try{
-		Robot robot = new Robot();
-		robot.keyPress(KeyEvent.VK_END);
-		robot.keyRelease(KeyEvent.VK_END);
-	}catch (AWTException e){
-		e.printStackTrace();	
-	}
-	
-
-    }	
+    
 
 
    public void saveCursor(){
