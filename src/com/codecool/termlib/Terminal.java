@@ -192,8 +192,10 @@ public class Terminal {
    public Character tryToRead() {
     try {
         if (System.in.available() > 0) {	    
-	    char input = (char)System.in.read();
-   	    System.out.print(input);
+
+	    char input = (char)System.in.read();	
+
+
             return input;
         }
     }

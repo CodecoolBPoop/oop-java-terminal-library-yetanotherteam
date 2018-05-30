@@ -4,14 +4,12 @@ import com.codecool.termlib.Word;
 import java.lang.*;
 import java.util.Scanner;
 import java.io.IOException;
-
-import com.codecool.termlib.Word;
-import java.lang.*;
-import java.util.Scanner;
-import java.io.IOException;
 import java.util.Arrays;
 
 import com.codecool.termlib.Game;
+
+
+
 
 
 public class Main{
@@ -22,7 +20,7 @@ public class Main{
 		
 
 		newTerminal.setColor(Color.BLUE);
-		feature/wordclass
+		
 		
 		String input = "";
 		
@@ -56,6 +54,7 @@ public class Main{
 		
 		}
 			System.out.print(Arrays.toString(inputs));
+
 		
 		
 
