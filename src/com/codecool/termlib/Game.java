@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class Game {
 
-	public String[] dictonary = readFiles();
+	public String[] dictonary = readWords();
 
-	private String[] readFiles() {
+	private String[] readWords() {
 		String[] words = new String[0];
 
 		  try (BufferedReader br = new BufferedReader(new FileReader("dictonary.txt"))) {

@@ -193,7 +193,11 @@ public class Terminal {
     try {
         if (System.in.available() > 0) {	    
 	    char input = (char)System.in.read();	
+<<<<<<< HEAD
    	    System.out.print(input);
+=======
+   	    
+>>>>>>> feature/wordclass
             return input;
         }
     }
