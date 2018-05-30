@@ -1,5 +1,9 @@
 import com.codecool.termlib.Terminal;
 import com.codecool.termlib.Color;
+import com.codecool.termlib.Word;
+import java.lang.*;
+import java.util.Scanner;
+import java.io.IOException;
 
 import com.codecool.termlib.Word;
 import java.lang.*;
@@ -18,6 +22,7 @@ public class Main{
 		
 
 		newTerminal.setColor(Color.BLUE);
+		feature/wordclass
 		
 		String input = "";
 		
@@ -51,7 +56,6 @@ public class Main{
 		
 		}
 			System.out.print(Arrays.toString(inputs));
-		}
 		
 		
 
@@ -74,6 +78,7 @@ public class Main{
 		for(int i = 0; i < words.length; i++) {
 			System.out.println(words[i]);
 
-		}	
+		}
+	}
 
 }
