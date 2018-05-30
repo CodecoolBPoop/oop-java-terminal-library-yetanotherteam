@@ -192,12 +192,8 @@ public class Terminal {
    public Character tryToRead() {
     try {
         if (System.in.available() > 0) {	    
-	    char input = (char)System.in.read();	
-<<<<<<< HEAD
+	    char input = (char)System.in.read();
    	    System.out.print(input);
-=======
-   	    
->>>>>>> feature/wordclass
             return input;
         }
     }
