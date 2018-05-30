@@ -214,7 +214,7 @@ public class Terminal {
     try {
         if (System.in.available() > 0) {	    
 	    char input = (char)System.in.read();	
-   	    System.out.print(input);
+   	    
             return input;
         }
     }

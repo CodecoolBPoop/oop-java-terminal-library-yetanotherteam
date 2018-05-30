@@ -4,6 +4,7 @@ import com.codecool.termlib.Word;
 import java.lang.*;
 import java.util.Scanner;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main{
 	
@@ -13,34 +14,38 @@ public class Main{
 
 		newTerminal.setColor(Color.BLUE);
 		
-		String inputchar = "";
+		String input = "";
 		
 		newTerminal.moveTo(24,0);
 		newTerminal.setup();
 		int starttime = (int)System.currentTimeMillis();
-		int count = 0;
+		int count = 0;	
+		int wordcount = 0;
+		Character inputchar;	
+		String[] inputs = new String[10];
 		
-		
-		while(true){
-			newTerminal.saveCursor();
+		while(count<10){
+			
 			int currentTime = (int)System.currentTimeMillis();
+			inputchar = newTerminal.tryToRead();
+			if(inputchar != null){
+				if(inputchar == '\n'){inputs[wordcount] = input;input = "";wordcount++;}else{input += inputchar;}				
+			
+			}
 			if(currentTime - starttime > 1000){
-				count++;
+				count++;					
+				newTerminal.saveCursor();
 				newTerminal.clearScreen();
 				newTerminal.setWord("szó",0+count,24);
 				newTerminal.moveTo(24,0);
 				starttime = (int)System.currentTimeMillis();
+				newTerminal.restoreCursor();
 			}
-			
-			newTerminal.restoreCursor();					
-		        
-			
-			
-			
+					
 		
 		
 		}
-		
+			System.out.print(Arrays.toString(inputs));
 		}
 		
 		
