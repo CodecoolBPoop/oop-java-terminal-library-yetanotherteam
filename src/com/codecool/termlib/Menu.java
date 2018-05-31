@@ -4,36 +4,10 @@ import com.codecool.termlib.*;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.lang.Runnable;
+import java.lang.Runtime;
 
 public class Menu {
-
-	public int getRulesNumber() {
-
-		printRules();
-		int rulesNumber = 100;
-        boolean invalidInteger = true;
-
-        do {
-            Scanner scanMenuNumber = new Scanner(System.in);
-            try {
-	            rulesNumber = scanMenuNumber.nextInt();
-            	if (rulesNumber == 0) {
-            		invalidInteger = false;
-            	} else {
-            		invalidInteger = true;
-            	}
-            	
-            } catch(InputMismatchException inputError) {
-                System.out.println("The character you entered is not an integer.");
-                System.out.println(inputError);
-                invalidInteger = true;
-            } finally {
-				printRules();
-			}
-        } while (invalidInteger);
-        return rulesNumber;
-
-	}
 
 	public void printRules() {
 		Terminal menuTerminal = new Terminal();
@@ -115,8 +89,8 @@ public class Menu {
 		}
 	}
 
-	public int getMenuNumber(int maximum) {
-		printBoard();
+	public int getMenuNumber(int maximum, Runnable funtionToPass) {
+		funtionToPass.run();
 		int menuNumber = 100;
         boolean invalidInteger = true;
 
@@ -134,10 +108,9 @@ public class Menu {
             	
             } catch(InputMismatchException inputError) {
                 System.out.println("The character you entered is not an integer.");
-                System.out.println(inputError);
                 invalidInteger = true;
             } finally {
-				printBoard();
+				funtionToPass.run();
 			}
         } while (invalidInteger);
         return menuNumber;
@@ -147,13 +120,13 @@ public class Menu {
 		Main startMain = new Main();
 		options:
 			do {
-				int chosenNumber = getMenuNumber(4);
+				int chosenNumber = getMenuNumber(4, () -> {printBoard();});
 				switch (chosenNumber) {
 					case 1: startMain.playGame();
 							break;
 					case 2: System.out.println("Choose level");
 							break;
-					case 3: getRulesNumber();
+					case 3: getMenuNumber(0, () -> {printRules();});
 							break;
 					case 4: System.out.println("High scores");
 							break;
@@ -164,5 +137,4 @@ public class Menu {
 				}
 			} while (true);
 	}
-
 }
