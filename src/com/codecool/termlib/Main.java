@@ -30,11 +30,12 @@ public class Main{
 		newTerminal.setup(); //terminal 'raw' módba állítása, nem szükséges enter a szövegbevitelhez
 		int starttime = (int)System.currentTimeMillis(); //kezdeti viszonyítás pont az időben
 		int count = 0;	// számolja, hogy hányszor megy lejjebb
+		int lifes = 10;
 		
 		Character inputchar; // Character osztály ami felfog minden egyes leütött karaktert, ellenőrzés után appendelődik az input változóhoz	
 		
 		
-		while(count<24){
+		while(count<2500 && lifes>0){
 			
 			int currentTime = (int)System.currentTimeMillis(); //időmérés, most épp ennyi az idő
 			inputchar = newTerminal.tryToRead(); //kiolvas egy karaktert a user leütéseit tartalmazó standard inputból, csak karakterenként lehetséges
@@ -60,11 +61,21 @@ public class Main{
 					int yCoord = currentWords.get(k).getY(); //akutális szó y koordinátájának lekérése
 					int xCoord = currentWords.get(k).getX(); //akutális szó x koordinátájának lekérése
 					if(yCoord>0){
+						if (yCoord>15){newTerminal.setColor(Color.YELLOW);}
+						if(yCoord > 20){newTerminal.setColor(Color.RED);}
+						if(yCoord>21){currentWords.remove(k);lifes=lifes-1;continue;}
 						newTerminal.setWord(currentWord,yCoord,xCoord); //aktuális szó kiírása a lekért adatok alapján
+						newTerminal.setColor(Color.BLUE);
+						
+						
 					}
 					currentWords.get(k).setY(yCoord+1); //aktuális szó y koordinátájának inkrementálása, hisz most már eggyel lejjebb van
 				}				
 				starttime = (int)System.currentTimeMillis();//új viszonyítási pont, elmenti az utolsó frissítés idejét, most már ehhez méri az 1000ms-t
+				newTerminal.setWord(" ", 24, 76);
+				newTerminal.setWord(" ", 24, 77);
+				newTerminal.moveTo(24,60);
+				System.out.printf("Remaining lifes:%d",lifes);
 				newTerminal.restoreCursor(); //cursor visszaáll az elmentett helyére, lsd. fejjebb
 				count++;//frissítés számláló
 			}
@@ -78,3 +89,4 @@ public class Main{
 	}
 
 }
+//remaining lifes:

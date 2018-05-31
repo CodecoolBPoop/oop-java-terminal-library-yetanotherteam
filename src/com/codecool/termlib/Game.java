@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import com.codecool.termlib.Word;
 
+
 public class Game {
 
 	public String[] dictionary = readWords();
@@ -52,5 +53,6 @@ public class Game {
 		//megkapja a word listet és az inputot az enter leütésére, átiterál a szólistán, minden szót összehasonlít az inputtal, ha talál egyezést, az indexet return, ha nincs egyezés, -1-et	
 	}
 
+	
 }
 
