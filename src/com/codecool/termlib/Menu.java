@@ -165,8 +165,4 @@ public class Menu {
 			} while (true);
 	}
 
-//	public static void main(String[] args) {
-//		Menu newMenu = new Menu();
-//		int chosenNumber = newMenu.getMenuNumber();
-//	}
 }
