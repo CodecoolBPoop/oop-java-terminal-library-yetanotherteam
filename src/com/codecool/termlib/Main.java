@@ -1,6 +1,6 @@
-import com.codecool.termlib.Terminal;
-import com.codecool.termlib.Color;
-import com.codecool.termlib.Word;
+package com.codecool.termlib;
+
+import com.codecool.termlib.*;
 import java.lang.*;
 import java.util.Scanner;
 import java.io.IOException;
@@ -9,14 +9,13 @@ import java.util.ArrayList;
 
 import com.codecool.termlib.Game;
 
-
-
-
-
 public class Main{
-	
-	public static void main(String[] args){
-		
+
+	public Main(){
+
+	}
+
+	public void playGame() {		
 		Terminal newTerminal = new Terminal();
 		Game game = new Game();
 
@@ -69,34 +68,13 @@ public class Main{
 				newTerminal.restoreCursor(); //cursor visszaáll az elmentett helyére, lsd. fejjebb
 				count++;//frissítés számláló
 			}
-					
-		
 		
 		}
-			
-
-		
-		
-
-
-		// Terminal newTerminal = new Terminal();
-		// newTerminal.setBgColor(Color.RED);
-
-		// newTerminal.setColor(Color.BLUE);
-		// System.out.println("testline");
-		
-
-		// System.out.println("Hello World");
-		// newTerminal.resetStyle();
-		// System.out.println("Hello World");
-		// newTerminal.clearScreen();
-
-		
-
-		/*for(int i = 0; i < words.length; i++) {
-			System.out.println(words[i]);
-
-		}*/
+	}
+	
+	public static void main(String[] args){
+		Menu gameMenu = new Menu();
+		gameMenu.menuOptions();
 	}
 
 }
