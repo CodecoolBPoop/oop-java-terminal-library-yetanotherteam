@@ -151,8 +151,11 @@ public class Terminal {
      * position.
      */
     public void setWord(String word, int x, int y) {
+	
+	
 	moveTo(x,y);
 	System.out.print(word);
+	
     }
 
     /**
@@ -203,5 +206,7 @@ public class Terminal {
         System.err.println("Error " + e.getMessage());
     }
     return null;
-}	
+}
+
+    
 }
